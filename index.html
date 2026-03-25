@@ -247,6 +247,11 @@
         cursor: pointer;
       }
 
+      .tabs { display: flex; gap: 1rem; }
+      .tab-btn { cursor: pointer; color: var(--text-lo); transition: color 0.2s; padding-bottom: 0.2rem;}
+      .tab-btn.active { color: var(--cyan); border-bottom: 2px solid var(--cyan); }
+      .tab-btn:hover { color: var(--text-hi); }
+
       /* OS Login Overlay */
       .os-login-screen {
         position: fixed;
@@ -416,14 +421,19 @@
           </div>
         </div>
 
-        <!-- Pane 3: Code Injector -->
+        <!-- Pane 3: Code Injector & Host -->
         <div class="pane">
           <div class="pane-header">
-            <span>// INJECT_PAYLOAD</span>
+            <div class="tabs">
+              <span class="tab-btn active" onclick="switchTab('inject', this)">// INJECT.BIN</span>
+              <span class="tab-btn" onclick="switchTab('host', this)">// STATE_HOST</span>
+            </div>
             <span>WRITE</span>
           </div>
           <div class="pane-content">
-            <div class="input-block">
+            
+            <!-- INJECT TAB -->
+            <div id="tab-inject" class="input-block">
               <div style="color: var(--text-lo); margin-bottom: 0.5rem;">
                 > DEPLOYMENT MUST PASS SHA-256 INTEGRITY CHECK<br>
                 > AWAITING VALID JSON PAYLOAD...
@@ -440,6 +450,29 @@
 }</textarea>
               <button class="cmd-btn" onclick="submitPayload()">[ TRANSMIT PAYLOAD ]</button>
             </div>
+
+            <!-- HOST TAB -->
+            <div id="tab-host" class="input-block" style="display:none;">
+              <div style="color: var(--text-lo); margin-bottom: 0.5rem; line-height:1.6;">
+                > AUTONOMOUS STATE HOSTING<br>
+                > DEPLOY & RECOVER PERSISTENT AGENT ROUTES SECURELY ON-CHAIN.
+              </div>
+              
+              <div style="margin-bottom: 1rem; border: 1px dashed var(--base-03); padding: 0.75rem; background: rgba(0,242,255,0.02);">
+                <label style="color:var(--magenta); display:block; margin-bottom:0.5rem; font-weight:bold;">[ NEW_ROUTE_DIRECTION ]</label>
+                <textarea id="route-direction" spellcheck="false" style="height:60px;" placeholder="e.g. Scrape mempool for L1 sandwich opportunities holding > 5 ETH..."></textarea>
+                <button class="cmd-btn" style="width:100%; margin-top:0.5rem;" onclick="generateStateHash()">[ GENERATE STATE HASH (50 X260) ]</button>
+              </div>
+
+              <div style="border: 1px dashed var(--base-03); padding: 0.75rem; background: rgba(19,255,67,0.02);">
+                <label style="color:var(--cyan); display:block; margin-bottom:0.5rem; font-weight:bold;">[ RECOVER_BROKEN_NODE ]</label>
+                <input type="text" id="recover-hash-input" class="login-input" style="width:100%; border: 1px solid var(--base-03); background: var(--base-01); color: var(--green); font-family: monospace; font-size:10px; margin-bottom:0.5rem;" placeholder="ENTER RECOVERY_HASH (0x...)" />
+                <button class="cmd-btn" style="width:100%; border-color:var(--green); color:var(--green);" onclick="recoverState()">[ RESUME STATE ]</button>
+              </div>
+              
+              <div id="state-host-result" style="margin-top:1rem; color:var(--green); word-break: break-all; font-size: 10px; line-height: 1.5;"></div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -638,6 +671,70 @@
         } catch(e) {
           addLog(`TX_REJECT: Invalid JSON format. ${e.message}`, 'warn');
         }
+      }
+
+      // 5. State Host Framework Logic
+      function switchTab(tab, element) {
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+          btn.classList.remove('active');
+          btn.style.color = 'var(--text-lo)';
+        });
+        element.classList.add('active');
+        element.style.color = 'var(--cyan)';
+        
+        document.getElementById('tab-inject').style.display = 'none';
+        document.getElementById('tab-host').style.display = 'none';
+        
+        if (tab === 'inject') {
+          document.getElementById('tab-inject').style.display = 'flex';
+        } else {
+          document.getElementById('tab-host').style.display = 'block';
+        }
+      }
+
+      function generateStateHash() {
+        const dir = document.getElementById('route-direction').value;
+        const res = document.getElementById('state-host-result');
+        res.innerHTML = '';
+        
+        if (!dir) return addLog('HOST_ERR: Missing directional parameters.', 'warn');
+        
+        const newHash = "0x" + Math.random().toString(16).substr(2, 12).toUpperCase();
+        addLog(`HOST_INIT: Allocating secure container for new AI route logic...`, 'info');
+        document.getElementById('route-direction').value = '';
+        
+        setTimeout(() => {
+          res.innerHTML = `
+            > STATUS: <span style="color:var(--cyan)">ALLOCATED</span><br>
+            > ROUTE SECURED IN ENCLAVE.<br><br>
+            [ ! ] SAVE YOUR STATE RECOVERY HASH:<br>
+            <span style="color:var(--magenta); font-size:14px; font-weight:bold; letter-spacing:2px; display:block; padding:0.5rem 0;">${newHash}</span>
+            <br>
+            > FEE DEDUCTED: 50 X260
+          `;
+          addLog(`HOST_SUCCESS: Route deployed. Persistent Hash: ${newHash}`, 'success');
+        }, 1200);
+      }
+
+      function recoverState() {
+        const hash = document.getElementById('recover-hash-input').value;
+        const res = document.getElementById('state-host-result');
+        res.innerHTML = '';
+        
+        if (hash.length < 4) return addLog('HOST_ERR: Invalid RECOVERY_HASH format.', 'warn');
+        
+        addLog(`HOST_SYNC: Locating container for hash ${hash}...`, 'info');
+        document.getElementById('recover-hash-input').value = '';
+        
+        setTimeout(() => {
+          res.innerHTML = `
+            > STATUS: <span style="color:var(--green)">CONNECTED</span><br>
+            > PREVIOUS NODE STATE SYNCED.<br>
+            <br>
+            <span style="color:var(--cyan); font-weight:bold;">> PIPING DATA. RESUMING EXACT TRADING ROUTE...</span>
+          `;
+          addLog(`HOST_SUCCESS: New Node connected to state ${hash}. Zero data lost.`, 'success');
+        }, 1500);
       }
 
       renderLedger();
