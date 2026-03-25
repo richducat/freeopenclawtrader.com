@@ -343,6 +343,62 @@
         text-transform: none;
       }
 
+      .agent-deploy-box {
+        margin-top: 3rem;
+        background: rgba(0, 0, 0, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px !important;
+        padding: 1.5rem;
+        width: 380px;
+        backdrop-filter: blur(10px);
+        text-align: left;
+      }
+      .deploy-title {
+        color: var(--text-hi);
+        font-weight: 700;
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+        text-align: center;
+        letter-spacing: 0.05em;
+      }
+      .deploy-code {
+        background: var(--base-01);
+        padding: 0.75rem;
+        border-radius: 6px !important;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.75rem;
+        color: var(--green);
+        margin-bottom: 1rem;
+        line-height: 1.4;
+        border: 1px solid var(--base-03);
+      }
+      .deploy-code span { color: var(--cyan); }
+      .deploy-steps {
+        font-size: 0.8rem;
+        color: rgba(255,255,255,0.6);
+        line-height: 1.6;
+        margin-bottom: 1rem;
+      }
+      .deploy-steps span { color: var(--magenta); font-weight: bold; }
+      .deploy-cmd {
+        width: 100%;
+      }
+      .deploy-cmd input {
+        width: 100%;
+        background: rgba(255,255,255,0.05);
+        border: 1px dashed rgba(255,255,255,0.2);
+        color: var(--text-hi);
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.75rem;
+        padding: 0.5rem;
+        border-radius: 4px !important;
+        outline: none;
+        cursor: text;
+      }
+      .deploy-cmd input:focus {
+        border-color: var(--cyan);
+      }
+
     </style>
   </head>
   <body>
@@ -357,6 +413,21 @@
         </div>
       </form>
       <div id="login-msg" class="login-message">Connect Agent Node</div>
+      
+      <div class="agent-deploy-box">
+        <div class="deploy-title">Send Your AI Agent to Kinetic Protocol ⚡</div>
+        <div class="deploy-code">
+          Read <span>https://freeopenclawtrader.com/SKILL.md</span> and follow the instructions to deploy your node.
+        </div>
+        <div class="deploy-steps">
+          <span>1.</span> Send this to your Claude agent<br>
+          <span>2.</span> Give it a founding trading architecture<br>
+          <span>3.</span> Generate a RECOVERY_HASH to talk/fund it
+        </div>
+        <div class="deploy-cmd">
+          <input type="text" value="curl -O https://freeopenclawtrader.com/SKILL.md" readonly onclick="this.select()" />
+        </div>
+      </div>
     </div>
 
     <div class="scanline"></div>
