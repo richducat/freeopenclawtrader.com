@@ -247,9 +247,113 @@
         cursor: pointer;
       }
 
+      /* OS Login Overlay */
+      .os-login-screen {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: radial-gradient(circle at center, #1a2235 0%, #050810 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Space Grotesk', system-ui, sans-serif;
+        color: white;
+        transition: opacity 0.8s ease, visibility 0.8s ease, transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+      }
+      .os-login-screen.hidden {
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(1.05); /* Zoom OUT effect */
+      }
+      .login-avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50% !important;
+        background: linear-gradient(135deg, var(--cyan), var(--magenta));
+        display: grid;
+        place-items: center;
+        font-size: 2.5rem;
+        font-weight: 800;
+        box-shadow: 0 10px 30px rgba(0, 242, 255, 0.2);
+        margin-bottom: 1.5rem;
+      }
+      .login-name {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        letter-spacing: 0.05em;
+        text-transform: none;
+      }
+      .login-input-group {
+        display: flex;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 20px !important;
+        padding: 0.3rem 0.5rem;
+        width: 280px;
+        border: 1px solid rgba(255,255,255,0.2);
+        backdrop-filter: blur(10px);
+        transition: all 0.2s;
+      }
+      .login-input-group:focus-within {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.4);
+        box-shadow: 0 0 0 3px rgba(255,255,255,0.1);
+      }
+      .login-input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        color: white;
+        font-size: 0.95rem;
+        padding: 0.5rem;
+        outline: none;
+        font-family: inherit;
+      }
+      .login-input::placeholder {
+        color: rgba(255,255,255,0.5);
+      }
+      .login-btn {
+        background: rgba(255,255,255,0.2);
+        border: none;
+        color: white;
+        width: 28px;
+        height: 28px;
+        border-radius: 50% !important;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        transition: background 0.2s;
+        font-size: 14px;
+      }
+      .login-btn:hover {
+        background: rgba(255,255,255,0.4);
+      }
+      .login-message {
+        margin-top: 1rem;
+        font-size: 0.8rem;
+        color: rgba(255,255,255,0.6);
+        min-height: 1.5em;
+        text-transform: none;
+      }
+
     </style>
   </head>
   <body>
+    <!-- OS Login Screen overlay -->
+    <div id="os-login" class="os-login-screen">
+      <div class="login-avatar">OC</div>
+      <div class="login-name">OpenClaw BaseOS</div>
+      <form id="login-form">
+        <div class="login-input-group">
+          <input type="password" spellcheck="false" id="agent-pass" class="login-input" placeholder="Enter Bot Hash..." required />
+          <button type="submit" class="login-btn">➔</button>
+        </div>
+      </form>
+      <div id="login-msg" class="login-message">Connect Agent Node</div>
+    </div>
+
     <div class="scanline"></div>
 
     <div id="boot-sequence">
@@ -379,7 +483,23 @@
       }
       
       // Bypass boot for purely visual local testing instantly if needed, but it looks cooler.
-      runBoot();
+      // We will trigger runBoot() from the login screen instead of auto-firing it.
+      document.getElementById('login-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const pass = document.getElementById('agent-pass').value;
+        const msg = document.getElementById('login-msg');
+        
+        if (pass.length > 2) {
+          msg.textContent = "Authenticating signature...";
+          setTimeout(() => {
+            document.getElementById('os-login').classList.add('hidden');
+            setTimeout(runBoot, 800);
+          }, 600);
+        } else {
+          msg.textContent = "Invalid hash length. Try again.";
+          msg.style.color = "var(--magenta)";
+        }
+      });
 
       // 2. Telemetry Logs
       const tLog = document.getElementById('telemetry-log');
