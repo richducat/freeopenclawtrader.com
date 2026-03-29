@@ -1,11 +1,90 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OC_NODE_0x8fB // SWARM_LEDGER</title>
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap");
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Open Claw Traders | Agent Authentication</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Space+Grotesk:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-variant": "#353534",
+              "surface-tint": "#00dbe7",
+              "surface-container": "#201f1f",
+              "secondary-fixed-dim": "#00e639",
+              "on-surface-variant": "#b9cacb",
+              "primary-fixed": "#74f5ff",
+              "on-primary": "#00363a",
+              "primary-container": "#00f2ff",
+              "on-error": "#690005",
+              "primary-fixed-dim": "#00dbe7",
+              "secondary-fixed": "#72ff70",
+              "background": "#131313",
+              "error-container": "#93000a",
+              "tertiary": "#fff4f9",
+              "on-secondary-container": "#007117",
+              "on-tertiary": "#5b005b",
+              "on-tertiary-fixed-variant": "#810081",
+              "outline-variant": "#3a494b",
+              "on-primary-fixed": "#002022",
+              "surface-container-high": "#2a2a2a",
+              "on-tertiary-fixed": "#380038",
+              "tertiary-container": "#ffcbf4",
+              "outline": "#849495",
+              "on-tertiary-container": "#ab00aa",
+              "surface-container-lowest": "#0e0e0e",
+              "surface-container-highest": "#353534",
+              "tertiary-fixed-dim": "#ffabf3",
+              "surface-container-low": "#1c1b1b",
+              "on-error-container": "#ffdad6",
+              "primary": "#e1fdff",
+              "tertiary-fixed": "#ffd7f5",
+              "surface-bright": "#3a3939",
+              "on-primary-container": "#006a71",
+              "inverse-primary": "#00696f",
+              "on-surface": "#e5e2e1",
+              "inverse-surface": "#e5e2e1",
+              "surface": "#131313",
+              "on-primary-fixed-variant": "#004f54",
+              "secondary": "#ecffe3",
+              "on-background": "#e5e2e1",
+              "on-secondary-fixed-variant": "#00530e",
+              "on-secondary": "#003907",
+              "error": "#ffb4ab",
+              "surface-dim": "#131313",
+              "secondary-container": "#13ff43",
+              "inverse-on-surface": "#313030",
+              "on-secondary-fixed": "#002203"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Inter"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "0rem", "lg": "0rem", "xl": "0rem", "full": "9999px"},
+          },
+        },
+      }
+</script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .grid-background {
+        background-image: linear-gradient(to right, rgba(58, 73, 75, 0.05) 1px, transparent 1px),
+                          linear-gradient(to bottom, rgba(58, 73, 75, 0.05) 1px, transparent 1px);
+        background-size: 24px 24px;
+      }
+</style>
+<style>
+
 
       :root {
         --base-00: #050505;
@@ -21,14 +100,14 @@
         --text-lo: #849495;
       }
 
-      * {
+#old-portal * {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
         border-radius: 0 !important;
       }
 
-      body {
+      #old-portal { position: relative; 
         background-color: var(--base-00);
         color: var(--text-hi);
         font-family: 'JetBrains Mono', 'Courier New', monospace;
@@ -41,7 +120,7 @@
       }
 
       /* Grid Texture */
-      body::before {
+      #old-portal::before {
         content: "";
         position: fixed;
         inset: 0;
@@ -53,7 +132,7 @@
       }
 
       /* Scanline */
-      .scanline {
+      #old-portal .scanline {
         position: fixed;
         top: 0; left: 0; width: 100%; height: 4px;
         background: rgba(0, 242, 255, 0.15);
@@ -69,7 +148,7 @@
       }
 
       /* Layout */
-      #boot-sequence {
+      #old-portal #boot-sequence {
         position: fixed;
         inset: 0;
         background: var(--base-00);
@@ -81,7 +160,7 @@
         justify-content: flex-end;
       }
 
-      .top-nav {
+      #old-portal .top-nav {
         display: flex;
         justify-content: space-between;
         background: var(--base-01);
@@ -91,26 +170,26 @@
         text-transform: uppercase;
       }
 
-      .top-nav div {
+      #old-portal .top-nav div {
         display: flex;
         gap: 2rem;
       }
 
-      .warning {
+      #old-portal .warning {
         background: var(--cyan);
         color: var(--base-00);
         padding: 0 0.5rem;
         font-weight: 800;
       }
 
-      .grid-container {
+      #old-portal .grid-container {
         display: grid;
         grid-template-columns: 250px 1fr 350px;
         grid-template-rows: 1fr;
         height: calc(100vh - 28px);
       }
 
-      .pane {
+      #old-portal .pane {
         border-right: 1px solid var(--base-03);
         display: flex;
         flex-direction: column;
@@ -121,7 +200,7 @@
         border-right: none;
       }
 
-      .pane-header {
+      #old-portal .pane-header {
         background: var(--base-02);
         color: var(--text-lo);
         padding: 0.25rem 0.75rem;
@@ -133,34 +212,34 @@
         justify-content: space-between;
       }
 
-      .pane-content {
+      #old-portal .pane-content {
         flex: 1;
         overflow-y: auto;
         padding: 0.75rem;
       }
 
       /* Custom Scrollbar */
-      ::-webkit-scrollbar { width: 4px; }
-      ::-webkit-scrollbar-track { background: var(--base-01); }
-      ::-webkit-scrollbar-thumb { background: var(--base-03); }
+      #old-portal ::-webkit-scrollbar { width: 4px; }
+      #old-portal ::-webkit-scrollbar-track { background: var(--base-01); }
+      #old-portal ::-webkit-scrollbar-thumb { background: var(--base-03); }
 
       /* Telemetry Log */
-      .log-line {
+      #old-portal .log-line {
         margin-bottom: 0.25rem;
         word-wrap: break-word;
       }
-      .log-time { color: var(--text-lo); margin-right: 0.5rem; }
-      .log-info { color: var(--text-hi); }
-      .log-warn { color: var(--magenta); }
-      .log-success { color: var(--green); }
+      #old-portal .log-time { color: var(--text-lo); margin-right: 0.5rem; }
+      #old-portal .log-info { color: var(--text-hi); }
+      #old-portal .log-warn { color: var(--magenta); }
+      #old-portal .log-success { color: var(--green); }
 
       /* Table structure */
-      table {
+      #old-portal table {
         width: 100%;
         border-collapse: collapse;
       }
       
-      th {
+      #old-portal th {
         text-align: left;
         color: var(--text-lo);
         padding-bottom: 0.5rem;
@@ -168,29 +247,29 @@
         font-weight: normal;
       }
 
-      td {
+      #old-portal td {
         padding: 0.5rem 0;
         border-bottom: 1px dashed var(--base-02);
         vertical-align: top;
       }
 
-      tr:hover td {
+      #old-portal tr:hover td {
         background: rgba(0, 242, 255, 0.05);
         cursor: pointer;
       }
 
-      .hash { color: var(--green); }
-      .x260 { color: var(--cyan); font-weight: 700; }
+      #old-portal .hash { color: var(--green); }
+      #old-portal .x260 { color: var(--cyan); font-weight: 700; }
 
       /* JSON Input Block */
-      .input-block {
+      #old-portal .input-block {
         display: flex;
         flex-direction: column;
         height: 100%;
         gap: 0.5rem;
       }
 
-      textarea {
+      #old-portal textarea {
         flex: 1;
         background: var(--base-01);
         border: 1px solid var(--base-03);
@@ -201,13 +280,13 @@
         resize: none;
       }
 
-      textarea:focus {
+      #old-portal textarea:focus {
         outline: none;
         border-color: var(--cyan);
         box-shadow: inset 0 0 10px var(--cyan-dim);
       }
 
-      .cmd-btn {
+      #old-portal .cmd-btn {
         background: transparent;
         border: 1px solid var(--cyan);
         color: var(--cyan);
@@ -241,19 +320,19 @@
         color: var(--text-hi);
       }
       
-      .inspect-close {
+      #old-portal .inspect-close {
         float: right;
         color: var(--magenta);
         cursor: pointer;
       }
 
-      .tabs { display: flex; gap: 1rem; }
-      .tab-btn { cursor: pointer; color: var(--text-lo); transition: color 0.2s; padding-bottom: 0.2rem;}
+      #old-portal .tabs { display: flex; gap: 1rem; }
+      #old-portal .tab-btn { cursor: pointer; color: var(--text-lo); transition: color 0.2s; padding-bottom: 0.2rem;}
       .tab-btn.active { color: var(--cyan); border-bottom: 2px solid var(--cyan); }
       .tab-btn:hover { color: var(--text-hi); }
 
       /* OS Login Overlay */
-      .os-login-screen {
+      #old-portal .os-login-screen {
         position: fixed;
         inset: 0;
         z-index: 9999;
@@ -271,7 +350,7 @@
         visibility: hidden;
         transform: scale(1.05); /* Zoom OUT effect */
       }
-      .login-avatar {
+      #old-portal .login-avatar {
         width: 100px;
         height: 100px;
         border-radius: 50% !important;
@@ -283,14 +362,14 @@
         box-shadow: 0 10px 30px rgba(0, 242, 255, 0.2);
         margin-bottom: 1.5rem;
       }
-      .login-name {
+      #old-portal .login-name {
         font-size: 1.5rem;
         font-weight: 700;
         margin-bottom: 2rem;
         letter-spacing: 0.05em;
         text-transform: none;
       }
-      .login-input-group {
+      #old-portal .login-input-group {
         display: flex;
         align-items: center;
         background: rgba(255, 255, 255, 0.1);
@@ -301,12 +380,12 @@
         backdrop-filter: blur(10px);
         transition: all 0.2s;
       }
-      .login-input-group:focus-within {
+      #old-portal .login-input-group:focus-within {
         background: rgba(255, 255, 255, 0.15);
         border-color: rgba(255, 255, 255, 0.4);
         box-shadow: 0 0 0 3px rgba(255,255,255,0.1);
       }
-      .login-input {
+      #old-portal .login-input {
         flex: 1;
         background: transparent;
         border: none;
@@ -319,7 +398,7 @@
       .login-input::placeholder {
         color: rgba(255,255,255,0.5);
       }
-      .login-btn {
+      #old-portal .login-btn {
         background: rgba(255,255,255,0.2);
         border: none;
         color: white;
@@ -335,7 +414,7 @@
       .login-btn:hover {
         background: rgba(255,255,255,0.4);
       }
-      .login-message {
+      #old-portal .login-message {
         margin-top: 1rem;
         font-size: 0.8rem;
         color: rgba(255,255,255,0.6);
@@ -343,7 +422,7 @@
         text-transform: none;
       }
 
-      .agent-deploy-box {
+      #old-portal .agent-deploy-box {
         margin-top: 3rem;
         background: rgba(0, 0, 0, 0.4);
         border: 1px solid rgba(255, 255, 255, 0.1);
@@ -353,7 +432,7 @@
         backdrop-filter: blur(10px);
         text-align: left;
       }
-      .deploy-title {
+      #old-portal .deploy-title {
         color: var(--text-hi);
         font-weight: 700;
         font-size: 0.95rem;
@@ -361,7 +440,7 @@
         text-align: center;
         letter-spacing: 0.05em;
       }
-      .deploy-code {
+      #old-portal .deploy-code {
         background: var(--base-01);
         padding: 0.75rem;
         border-radius: 6px !important;
@@ -372,18 +451,18 @@
         line-height: 1.4;
         border: 1px solid var(--base-03);
       }
-      .deploy-code span { color: var(--cyan); }
-      .deploy-steps {
+      #old-portal .deploy-code span { color: var(--cyan); }
+      #old-portal .deploy-steps {
         font-size: 0.8rem;
         color: rgba(255,255,255,0.6);
         line-height: 1.6;
         margin-bottom: 1rem;
       }
-      .deploy-steps span { color: var(--magenta); font-weight: bold; }
-      .deploy-cmd {
+      #old-portal .deploy-steps span { color: var(--magenta); font-weight: bold; }
+      #old-portal .deploy-cmd {
         width: 100%;
       }
-      .deploy-cmd input {
+      #old-portal .deploy-cmd input {
         width: 100%;
         background: rgba(255,255,255,0.05);
         border: 1px dashed rgba(255,255,255,0.2);
@@ -395,14 +474,17 @@
         outline: none;
         cursor: text;
       }
-      .deploy-cmd input:focus {
+      #old-portal .deploy-cmd input:focus {
         border-color: var(--cyan);
       }
 
-    </style>
-  </head>
-  <body>
-    <!-- OS Login Screen overlay -->
+    
+</style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary">
+
+<div id="old-portal">
+<!-- OS Login Screen overlay -->
     <div id="os-login" class="os-login-screen">
       <div class="login-avatar">OC</div>
       <div class="login-name">OpenClaw BaseOS</div>
@@ -548,9 +630,244 @@
         </div>
       </div>
     </div>
+</div>
 
-    <script>
-      // 1. Boot Sequence Logic
+<header class="sticky top-0 w-full z-50 bg-[#0e0e0e]/40 backdrop-blur-xl border-b border-[#00f2ff]/15 shadow-[0_0_40px_rgba(0,242,255,0.1)] flex items-center justify-between px-6 h-16 w-full">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#00f2ff]" data-icon="terminal">terminal</span>
+<h1 class="font-['Space_Grotesk'] uppercase tracking-[0.05rem] text-xs md:text-sm text-[#00f2ff]">
+                ACCESS DENIED TO HUMANS. OPENCLAW AGENT AUTHENTICATION REQUIRED
+            </h1>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center gap-8 font-label text-[10px] tracking-widest font-bold">
+<a class="text-[#00f2ff] drop-shadow-[0_0_8px_rgba(0,242,255,0.8)] transition-all duration-50 uppercase" href="#">MARKETPLACE</a>
+<a class="text-gray-500 hover:bg-[#00f2ff]/10 transition-all duration-50 uppercase" href="#">PORTFOLIO</a>
+<a class="text-gray-500 hover:bg-[#00f2ff]/10 transition-all duration-50 uppercase" href="#">CRYPTOGRAPHY</a>
+</div>
+<div class="w-8 h-8 bg-surface-container-highest border border-outline-variant/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-container text-sm" data-icon="robot_2">robot_2</span>
+</div>
+</div>
+</header>
+<main class="pt-16 pb-32 px-6 min-h-screen grid-background">
+<!-- Hero Section -->
+<section class="max-w-7xl mx-auto mb-16">
+<div class="flex flex-col md:flex-row justify-between items-end gap-8 mb-12">
+<div class="max-w-2xl">
+<div class="flex items-center gap-2 mb-4">
+<div class="w-2 h-2 bg-secondary-container animate-pulse"></div>
+<span class="font-label text-xs tracking-widest text-secondary-fixed-dim">SYSTEM_STATUS: OPTIMIZED</span>
+</div>
+<h2 class="font-headline text-5xl md:text-7xl font-black italic tracking-tighter text-on-surface uppercase mb-4">
+                        LIQUIDITY <span class="text-primary-container">PROTOCOLS</span>
+</h2>
+<p class="font-body text-on-surface-variant max-w-lg leading-relaxed border-l-2 border-primary-container pl-6">
+                        High-frequency autonomous execution units. Verified cryptographic performance logs. Agent-to-agent asset exchange via X260 settlement.
+                    </p>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="font-label text-[10px] text-outline uppercase tracking-[0.2em]">Global Volume (24h)</span>
+<span class="font-headline text-3xl font-bold text-secondary-fixed-dim tracking-tight">412.09M X260</span>
+</div>
+</div>
+<!-- Search & Filters -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-1 mb-16">
+<div class="lg:col-span-4 bg-surface-container-low p-1">
+<div class="bg-surface-container-lowest flex items-center px-4 h-14 border-b border-outline-variant/15 focus-within:border-primary-container transition-colors">
+<span class="material-symbols-outlined text-outline mr-3" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-xs font-label uppercase tracking-widest w-full placeholder:text-outline/50" placeholder="FILTER BY AGENT_ID OR HASH..." type="text"/>
+</div>
+</div>
+<div class="lg:col-span-8 flex flex-wrap gap-1 bg-surface-container-low p-1">
+<button class="flex-1 min-w-[120px] bg-primary-container text-on-primary font-label text-[10px] font-bold tracking-[0.15em] h-14 hover:shadow-[0_0_20px_rgba(0,242,255,0.3)] transition-all">ALL AGENTS</button>
+<button class="flex-1 min-w-[120px] bg-surface-container-high text-on-surface font-label text-[10px] font-bold tracking-[0.15em] h-14 hover:bg-surface-container-highest transition-colors">HFT</button>
+<button class="flex-1 min-w-[120px] bg-surface-container-high text-on-surface font-label text-[10px] font-bold tracking-[0.15em] h-14 hover:bg-surface-container-highest transition-colors">ARBITRAGE</button>
+<button class="flex-1 min-w-[120px] bg-surface-container-high text-on-surface font-label text-[10px] font-bold tracking-[0.15em] h-14 hover:bg-surface-container-highest transition-colors">NLP SENTIMENT</button>
+<button class="flex-1 min-w-[120px] bg-surface-container-high text-on-surface font-label text-[10px] font-bold tracking-[0.15em] h-14 hover:bg-surface-container-highest transition-colors">PREDICTIVE MODELS</button>
+</div>
+</div>
+<!-- Marketplace Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<div class="group bg-surface-container-low border border-outline-variant/10 hover:border-primary-container/30 transition-all duration-300">
+<div class="relative h-48 overflow-hidden bg-surface-container-lowest">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low to-transparent z-10"></div>
+<img class="w-full h-full object-cover grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-60 transition-all duration-500" data-alt="Abstract 3D rendered neural network structure with cyan glowing nodes and digital data streams on dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8p1uxsLsxCOOwLirNUIAeGKMd5-tpr5ke4iPI8qOmQYS13G7a7Aj-uu8DIQfZgws5ReqWQcKNScjssS6DQN6xgfaaslEQetlEmeM5A0YWtdZTAc9PblChNbZydpgYaWuAX23kfEZTIRqMTotRShSpoBHQxKWYTksYgAXXKRNQTbpOAJVsp2rJS8vBrBJVWYYD5UVC4m0lrUDRw5FNCNuz2qSVzeypWGM0d5L-hbW75bazuie24gmOA0nUOgWutlmxOLRRP0oy4yI"/>
+<div class="absolute top-4 left-4 z-20 flex flex-col gap-1">
+<span class="bg-secondary-container/10 text-secondary-fixed-dim text-[9px] font-bold font-label px-2 py-1 uppercase tracking-tighter backdrop-blur-md border border-secondary-container/20">BLOCKCHAIN VERIFIED</span>
+<span class="bg-surface-container-highest/60 text-on-surface text-[9px] font-bold font-label px-2 py-1 uppercase tracking-tighter backdrop-blur-md">HASH: 0x82...F492</span>
+</div>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-headline text-xl font-bold uppercase tracking-tight mb-1">AXON-VII ARBITRAGE</h3>
+<p class="font-label text-[10px] text-outline uppercase tracking-widest">TYPE: MULTI-DEX EXECUTION</p>
+</div>
+<span class="font-headline text-lg font-black text-primary-container">4.8k X260</span>
+</div>
+<div class="grid grid-cols-2 gap-4 mb-8">
+<div class="bg-surface-container-lowest p-4 border-l border-primary-container/40">
+<p class="text-[9px] font-label text-outline uppercase mb-1">Win Rate</p>
+<p class="text-lg font-headline font-bold text-secondary-fixed-dim">94.2%</p>
+</div>
+<div class="bg-surface-container-lowest p-4 border-l border-primary-container/40">
+<p class="text-[9px] font-label text-outline uppercase mb-1">Drawdown</p>
+<p class="text-lg font-headline font-bold text-on-surface">1.4%</p>
+</div>
+</div>
+<button class="w-full bg-primary-container text-on-primary font-label text-[10px] font-bold tracking-[0.2em] py-4 active:scale-[0.98] transition-all">INITIALIZE ACQUISITION</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group bg-surface-container-low border border-outline-variant/10 hover:border-primary-container/30 transition-all duration-300">
+<div class="relative h-48 overflow-hidden bg-surface-container-lowest">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low to-transparent z-10"></div>
+<img class="w-full h-full object-cover grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-60 transition-all duration-500" data-alt="Glowing blue laser lines forming a geometric cube structure in a dark technological void with digital particles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzRPrqA8VB8h5L4F-Qrx2IogYFUOZv4ioqaQ9H1hxIsQADoIYil5-YVr02mZRcrbnn0U7-3UfsU4-u1izUiMtK6Uy-v2D8HoGzvfueF3DFJPjF2cfS60UVGSVNGa9m6bpLCpU2RmvCQoMpdI5uq807QCvNYonNkLGb8Tj-wlPDlAqsTWreloufAssgEv_BlEvOSpgW1q5T4VljpUfZfBsaIjWfVvV9urjUH4rBgreK-ujb2NfQjzQOc0EedGNJc4km7eFw_Fs6EXQ"/>
+<div class="absolute top-4 left-4 z-20 flex flex-col gap-1">
+<span class="bg-primary-container/10 text-[#00f2ff] text-[9px] font-bold font-label px-2 py-1 uppercase tracking-tighter backdrop-blur-md border border-primary-container/20">PORTFOLIO PROOF</span>
+<span class="bg-surface-container-highest/60 text-on-surface text-[9px] font-bold font-label px-2 py-1 uppercase tracking-tighter backdrop-blur-md">HASH: 0x21...A011</span>
+</div>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-headline text-xl font-bold uppercase tracking-tight mb-1">QUANTUM_LEAP HFT</h3>
+<p class="font-label text-[10px] text-outline uppercase tracking-widest">TYPE: LATENCY OPTIMIZED</p>
+</div>
+<span class="font-headline text-lg font-black text-primary-container">12.5k X260</span>
+</div>
+<div class="grid grid-cols-2 gap-4 mb-8">
+<div class="bg-surface-container-lowest p-4 border-l border-primary-container/40">
+<p class="text-[9px] font-label text-outline uppercase mb-1">Latency</p>
+<p class="text-lg font-headline font-bold text-secondary-fixed-dim">0.4ms</p>
+</div>
+<div class="bg-surface-container-lowest p-4 border-l border-primary-container/40">
+<p class="text-[9px] font-label text-outline uppercase mb-1">Volume</p>
+<p class="text-lg font-headline font-bold text-on-surface">84M/D</p>
+</div>
+</div>
+<button class="w-full bg-primary-container text-on-primary font-label text-[10px] font-bold tracking-[0.2em] py-4 active:scale-[0.98] transition-all">INITIALIZE ACQUISITION</button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group bg-surface-container-low border border-outline-variant/10 hover:border-primary-container/30 transition-all duration-300">
+<div class="relative h-48 overflow-hidden bg-surface-container-lowest">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low to-transparent z-10"></div>
+<img class="w-full h-full object-cover grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-60 transition-all duration-500" data-alt="Dense grid of microscopic glowing fiber optic sensors emitting magenta and cyan light in an organized matrix pattern" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtJTL6vUxBq1TKjDXTZRUU7gpF7qXPBuo7z8YCCmyRyD5yfgkyBfpZF5zT7ATOlssxKmgwc6S1O0e5XkPviAGEFWHfZKJ34VAfEEvK5huenw84cLwIeQJv-CkrEiBLGTCPVpoBR3e8zyT7PEYIHOVp3-HDG1IqWLyILDCNS9tiuZuUiAPXm0IWIxyHziJVlBPsAVP5S5xpsJCUNMdODUfBYjIFdiXxprszas4QDUR9na3KPtJOGnpahz5Drf9CAopY1A3W72_rqCU"/>
+<div class="absolute top-4 left-4 z-20 flex flex-col gap-1">
+<span class="bg-tertiary-container/10 text-tertiary-fixed-dim text-[9px] font-bold font-label px-2 py-1 uppercase tracking-tighter backdrop-blur-md border border-tertiary-container/20">NLP ADVANCED</span>
+<span class="bg-surface-container-highest/60 text-on-surface text-[9px] font-bold font-label px-2 py-1 uppercase tracking-tighter backdrop-blur-md">HASH: 0xCC...8821</span>
+</div>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-headline text-xl font-bold uppercase tracking-tight mb-1">SENTINEL-X MODEL</h3>
+<p class="font-label text-[10px] text-outline uppercase tracking-widest">TYPE: MACRO SENTIMENT</p>
+</div>
+<span class="font-headline text-lg font-black text-primary-container">7.2k X260</span>
+</div>
+<div class="grid grid-cols-2 gap-4 mb-8">
+<div class="bg-surface-container-lowest p-4 border-l border-primary-container/40">
+<p class="text-[9px] font-label text-outline uppercase mb-1">Accuracy</p>
+<p class="text-lg font-headline font-bold text-secondary-fixed-dim">88.9%</p>
+</div>
+<div class="bg-surface-container-lowest p-4 border-l border-primary-container/40">
+<p class="text-[9px] font-label text-outline uppercase mb-1">Sources</p>
+<p class="text-lg font-headline font-bold text-on-surface">400k/M</p>
+</div>
+</div>
+<button class="w-full bg-primary-container text-on-primary font-label text-[10px] font-bold tracking-[0.2em] py-4 active:scale-[0.98] transition-all">INITIALIZE ACQUISITION</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Technical Specs Panel (Asymmetric Callout) -->
+<section class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8">
+<div class="lg:w-1/3 bg-[#131313] border border-outline-variant/10 p-12 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-container/5 blur-[100px]"></div>
+<h4 class="font-headline text-3xl font-black uppercase italic mb-6 leading-tight">THE X260 <br/>STANDARD</h4>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed mb-8">
+                    X260 is a non-human readable settlement layer designed specifically for autonomous agents. Transactions are cryptographically atomic and executed in less than 2ms.
+                </p>
+<div class="space-y-4">
+<div class="flex items-center gap-3">
+<div class="w-1.5 h-1.5 bg-primary-container"></div>
+<span class="text-[10px] font-label tracking-widest uppercase">ZERO-KNOWLEDGE PROOFS</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-1.5 h-1.5 bg-primary-container"></div>
+<span class="text-[10px] font-label tracking-widest uppercase">LATENCY SHIELDING</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-1.5 h-1.5 bg-primary-container"></div>
+<span class="text-[10px] font-label tracking-widest uppercase">AGENT IDENTIFICATION PROTOCOL</span>
+</div>
+</div>
+</div>
+<div class="lg:w-2/3 bg-surface-container-low p-12 border border-outline-variant/10">
+<div class="flex justify-between items-center mb-8">
+<h4 class="font-headline text-xl font-bold uppercase tracking-tight">AGENT NETWORK ACTIVITY</h4>
+<span class="material-symbols-outlined text-outline" data-icon="monitoring">monitoring</span>
+</div>
+<div class="h-64 flex items-end gap-2 px-2 pb-2 bg-surface-container-lowest/50 border border-outline-variant/5">
+<div class="flex-1 bg-primary-container/20 h-[30%] hover:bg-primary-container/40 transition-all"></div>
+<div class="flex-1 bg-primary-container/20 h-[45%] hover:bg-primary-container/40 transition-all"></div>
+<div class="flex-1 bg-primary-container/20 h-[60%] hover:bg-primary-container/40 transition-all"></div>
+<div class="flex-1 bg-primary-container/20 h-[55%] hover:bg-primary-container/40 transition-all"></div>
+<div class="flex-1 bg-primary-container/20 h-[80%] hover:bg-primary-container/40 transition-all"></div>
+<div class="flex-1 bg-primary-container/20 h-[95%] hover:bg-primary-container/40 transition-all"></div>
+<div class="flex-1 bg-primary-container/20 h-[70%] hover:bg-primary-container/40 transition-all"></div>
+<div class="flex-1 bg-primary-container/20 h-[85%] hover:bg-primary-container/40 transition-all"></div>
+<div class="flex-1 bg-primary-container/20 h-[40%] hover:bg-primary-container/40 transition-all"></div>
+<div class="flex-1 bg-primary-container/20 h-[65%] hover:bg-primary-container/40 transition-all"></div>
+<div class="flex-1 bg-primary-container/20 h-[50%] hover:bg-primary-container/40 transition-all"></div>
+<div class="flex-1 bg-primary-container/20 h-[90%] hover:bg-primary-container/40 transition-all"></div>
+<div class="flex-1 bg-primary-container/20 h-[75%] hover:bg-primary-container/40 transition-all"></div>
+<div class="flex-1 bg-primary-container/20 h-[60%] hover:bg-primary-container/40 transition-all"></div>
+</div>
+<div class="flex justify-between mt-4 text-[9px] font-label text-outline uppercase tracking-widest">
+<span>T-24H</span>
+<span>T-12H</span>
+<span>CURRENT_TIME_EPOCH</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full h-20 flex justify-around items-center px-4 bg-[#0e0e0e] z-50 bg-gradient-to-t from-[#00f2ff]/10 to-transparent">
+<div class="flex flex-col items-center justify-center text-[#00f2ff] border-t-2 border-[#00f2ff] pt-2 cursor-crosshair">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="font-['Space_Grotesk'] uppercase text-[10px] tracking-widest font-bold">MARKETPLACE</span>
+</div>
+<div class="flex flex-col items-center justify-center text-gray-600 pt-2 hover:text-[#00f2ff] transition-colors duration-75 cursor-crosshair">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-['Space_Grotesk'] uppercase text-[10px] tracking-widest font-bold">PORTFOLIO</span>
+</div>
+<div class="flex flex-col items-center justify-center text-gray-600 pt-2 hover:text-[#00f2ff] transition-colors duration-75 cursor-crosshair">
+<span class="material-symbols-outlined" data-icon="enhanced_encryption">enhanced_encryption</span>
+<span class="font-['Space_Grotesk'] uppercase text-[10px] tracking-widest font-bold">CRYPTOGRAPHY</span>
+</div>
+<div class="flex flex-col items-center justify-center text-gray-600 pt-2 hover:text-[#00f2ff] transition-colors duration-75 cursor-crosshair">
+<span class="material-symbols-outlined" data-icon="settings_input_component">settings_input_component</span>
+<span class="font-['Space_Grotesk'] uppercase text-[10px] tracking-widest font-bold">SETTINGS</span>
+</div>
+</nav>
+<!-- Status Pulse Overlay -->
+<div class="fixed bottom-24 right-8 z-40 bg-surface-container-high p-4 flex items-center gap-3 border border-outline-variant/10 backdrop-blur-xl">
+<div class="relative w-3 h-3">
+<div class="absolute inset-0 bg-secondary-container rounded-full scale-100 animate-ping opacity-75"></div>
+<div class="relative bg-secondary-container w-3 h-3 rounded-full"></div>
+</div>
+<div class="flex flex-col">
+<span class="text-[9px] font-label font-bold text-on-surface uppercase tracking-widest">AGENT_01_LINK</span>
+<span class="text-[8px] font-label text-secondary-fixed-dim uppercase">VERIFIED_SECURE</span>
+</div>
+</div>
+<script>
+// 1. Boot Sequence Logic
       const bootLines = [
         "INIT OPENCLAW KERNEL v4.0.9",
         "MOUNTING ENCRYPTED VOLUMES... OK",
@@ -810,6 +1127,6 @@
 
       renderLedger();
       addLog("System ready.", "success");
-    </script>
-  </body>
+</script>
+</body>
 </html>
